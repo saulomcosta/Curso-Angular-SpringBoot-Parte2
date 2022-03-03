@@ -1,0 +1,25 @@
+<!-- Parte Superior-->
+<app-navbar></app-navbar>
+<!-- Selector pacote template/navbar-->
+<!-- Parte Inferior-->
+<div id="layoutSidenav">
+   <!-- Menu a Esquerda-->
+   <div id="layoutSidenav_nav">
+      <app-sidebar></app-sidebar>
+      <!-- Selector pacote template/sidebar-->
+   </div>
+   <!-- Parte a direita-->
+   <div id="layoutSidenav_content">
+      <!-- Parte Dinâmica-->
+      <main>
+         <div class="container-fluid">
+            <!-- Recebe as rotas a serem renderizadas-->
+            <router-outlet></router-outlet>
+            <!-- Selector pacote (RouterModule) dentro do template.module -->
+         </div>
+      </main>
+      <!-- Roda-Pé-->
+      <app-footer></app-footer>
+      <!-- Selector pacote template/footer-->
+   </div>
+</div>

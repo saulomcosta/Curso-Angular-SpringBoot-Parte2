@@ -1,0 +1,102 @@
+<h1 class="mt-4">Clientes</h1>
+<ol class="breadcrumb mb-4">
+   <li class="breadcrumb-item active">
+      Consulta
+   </li>
+</ol>
+<div class="container"> 
+   <div class="row">
+      <div class="col md 12">
+         <div class="alert alert-success" role="alert" *ngIf="mensagemSucessso">
+               {{ mensagemSucessso }}
+          </div>
+          <div class="alert alert-danger" role="alert" *ngIf="mensagemError">
+            {{ mensagemError }}
+          </div>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-md-2">
+         <button class="btn btn-warning" (click)="cadastrarCliente()">
+            <i class="fa fa.pluss"></i>
+            Novo
+         </button>
+      </div>
+   </div>
+   <br/>
+   <div class="row">
+      <div class="col-md-12">
+         <table class="table table-condensed table-hover">
+            <thead>
+               <tr>
+                  <th>ID</th>
+                  <th>Nome</th>
+                  <th>CPF</th>
+                  <th>Data Cadastro</th>
+                  <th></th>                                                                        
+               </tr>
+            </thead>
+            <tbody>
+               <tr *ngFor="let cliente of clientes">
+                  <td>
+                     {{ cliente.id }}
+                  </td>
+                  <td>
+                     {{ cliente.nome }}
+                  </td>
+                  <td>
+                     {{ cliente.cpf }}
+                  </td>
+                  <td>
+                     {{ cliente.dataCadastro }}
+                  </td>
+                  <td>
+                        <button class="btn btn-primary" 
+                              routerLink="/clientes/form/{{ cliente.id }}">
+                           <i class="fa fa-edit"></i>
+                        </button>
+                         <!-- obs: não funcionou com o data-toggle e o data-target -->
+                        <button class="btn btn-danger" data-bs-toggle="modal" 
+                              data-bs-target="#modalDelecao" (click)="preparaDelecao(cliente)">
+                           <i class="fa fa-trash"></i>
+                        </button>
+
+                  </td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
+
+ <!-- Modal -->
+ <div class="modal fade" id="modalDelecao" tabindex="-1" aria-labelledby="modalDelecaoLabel" 
+      aria-hidden="true" role="dialog">
+   <div class="modal-dialog">
+     <div class="modal-content">
+
+       <div class="modal-header">
+         <h5 class="modal-title" id="exampleModalLabel">
+            Confirmação
+         </h5>
+       </div>
+
+       <div class="modal-body" *ngIf="clienteSelecionado">
+         Confirma a deleção do(a) cliente 
+               {{ clienteSelecionado.nome }}?
+       </div>
+
+       <div class="modal-footer">
+         <button class="btn btn-success" (click)="deletarCliente()"
+               data-bs-dismiss="modal">
+            Confirmar
+         </button>
+         <button class="btn btn-default" data-bs-dismiss="modal">
+            Cancelar
+         </button>
+       </div>
+
+     </div>
+   </div>
+ </div>
+ 
+</div>
